@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Giảm cache khi cập nhật ảnh/audio trên GitHub Pages -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <title>Mock Test One</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root{
+      --brand-orange:#f05a28;
+      --brand-dark:#231f20;
+      --brand-green:#19a974;
+      --soft-orange:#fff3ec;
+      --soft-blue:#eef7ff;
+      --soft-green:#eefaf4;
+      --border:#e3e6ea;
+      --text:#1f2933;
+      --muted:#667085;
+    }
+
+    html, body{
+      margin:0;
+      min-height:100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#f2f4f7;
+      color:var(--text);
+    }
+
+    .container{
+      height:100vh;
+      display:flex;
+      background:#fff;
+    }
+
+    .left{
+      width:66.66%;
+      overflow-y:auto;
+      padding:24px 28px 40px;
+      background:#fafafa;
+      border-right:2px solid #d9d9d9;
+    }
+
+    .right{
+      width:33.33%;
+      padding:16px;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      overflow:hidden;
+    }
+
+    .brand-bar{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:16px 18px;
+      margin-bottom:18px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(16,24,40,.06);
+    }
+
+    .logo{
+      width:180px;
+      max-width:34%;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      margin:0;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .title-block h1{
+      margin:0;
+      font-size:32px;
+      line-height:1.1;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color:var(--brand-dark);
+    }
+
+    .title-block p{
+      margin:6px 0 0;
+      font-size:15px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .quick-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:0 0 18px;
+    }
+
+    .quick-nav a{
+      text-decoration:none;
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      color:#344054;
+      background:#fff;
+      border:1px solid var(--border);
+    }
+
+    .quick-nav a:hover{ border-color:var(--brand-orange); color:var(--brand-orange); }
+
+    .section{
+      margin:24px 0 34px;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:#fff;
+      box-shadow:0 8px 22px rgba(16,24,40,.06);
+    }
+
+    .section-heading{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      margin:-2px 0 18px;
+      border-radius:14px;
+      color:#fff;
+      font-weight:900;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+
+    .section-heading .main{
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .section-heading .sub{
+      font-size:13px;
+      opacity:.95;
+      text-align:right;
+      font-weight:700;
+    }
+
+    #listening .section-heading{
+      background:linear-gradient(135deg, #f05a28, #ff9f43);
+    }
+
+    #reading-writing .section-heading{
+      background:linear-gradient(135deg, #0077c8, #00a3ff);
+    }
+
+    #speaking .section-heading{
+      background:linear-gradient(135deg, #10a36f, #49cc90);
+    }
+
+    .part-card{
+      padding:14px 16px;
+      margin:16px 0;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fcfcfd;
+    }
+
+    .part-card h3{
+      margin:0 0 10px;
+      font-size:19px;
+      color:#101828;
+    }
+
+    .note{
+      margin:6px 0 12px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    img.test-img{
+      width:100%;
+      max-width:980px;
+      height:auto;
+      display:block;
+      margin:12px 0 18px;
+      border-radius:10px;
+      background:#fff;
+      border:1px solid #eef0f3;
+    }
+
+    audio{
+      width:100%;
+      max-width:540px;
+      display:block;
+      margin:8px 0 16px;
+    }
+
+    .missing{
+      padding:14px 16px;
+      margin:10px 0 16px;
+      border:1px dashed #f79009;
+      background:#fffaeb;
+      color:#7a2e0e;
+      border-radius:10px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .form-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:22px;
+      font-weight:800;
+      margin:0;
+      color:#111827;
+    }
+
+    .iframe-wrap{
+      flex:1;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    @media (max-width: 900px){
+      .container{ flex-direction:column; height:auto; }
+      .left,.right{ width:100%; height:auto; }
+      .right{ min-height:80vh; }
+      .iframe-wrap{ min-height:80vh; }
+      .brand-bar{ align-items:flex-start; }
+      .logo{ width:150px; max-width:42%; }
+      .title-block h1{ font-size:24px; }
+      .section-heading{ align-items:flex-start; flex-direction:column; }
+      .section-heading .sub{ text-align:left; }
+      img.test-img, audio{ max-width:100%; }
+    }
+  </style>
+
+  <script>
+    /*
+      Mỗi lần upload ảnh/audio mới lên GitHub, đổi VERSION:
+      Ví dụ: 20260514_01 -> 20260514_02 -> 20260514_03
+    */
+    const VERSION = "20260514_01";
+
+    function withVersion(path){
+      return path + "?v=" + VERSION;
+    }
+
+    // Tự thử nhiều đuôi ảnh: .jpg, .JPG, .png, .PNG
+    function loadSmartImage(img){
+      const base = img.getAttribute("data-img");
+      const candidates = [
+        base + ".jpg",
+        base + ".JPG",
+        base + ".jpeg",
+        base + ".JPEG",
+        base + ".png",
+        base + ".PNG"
+      ];
+
+      let index = 0;
+
+      function tryNext(){
+        if(index >= candidates.length){
+          const warn = document.createElement("div");
+          warn.className = "missing";
+          warn.textContent = "Không tìm thấy ảnh: " + base + " (.jpg/.JPG/.png). Kiểm tra lại tên file trên GitHub.";
+          img.replaceWith(warn);
+          return;
+        }
+
+        const test = new Image();
+        test.onload = () => {
+          img.src = withVersion(candidates[index]);
+        };
+        test.onerror = () => {
+          index++;
+          tryNext();
+        };
+        test.src = withVersion(candidates[index]);
+      }
+
+      tryNext();
+    }
+
+    // Audio: thử nhiều đường dẫn phổ biến để tránh lỗi chữ hoa/thường
+    function setupAudio(audio){
+      const sources = JSON.parse(audio.getAttribute("data-audio"));
+      let index = 0;
+
+      function tryAudio(){
+        if(index >= sources.length){
+          const warn = document.createElement("div");
+          warn.className = "missing";
+          warn.textContent = "Không tìm thấy audio. Hãy kiểm tra tên file trong folder AUDIO/Audio.";
+          audio.replaceWith(warn);
+          return;
+        }
+
+        audio.src = withVersion(sources[index]);
+        audio.load();
+      }
+
+      audio.addEventListener("error", () => {
+        index++;
+        tryAudio();
+      });
+
+      tryAudio();
+    }
+
+    function addImages(containerId, prefix, start, end){
+      const container = document.getElementById(containerId);
+      for(let i = start; i <= end; i++){
+        const img = document.createElement("img");
+        img.className = "test-img";
+        img.setAttribute("data-img", "JPG1/" + prefix + i);
+        img.alt = prefix + i;
+        container.appendChild(img);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      // Logo nằm cùng thư mục với index.html. Đặt tên file logo là logo.png
+      const logo = document.querySelector(".logo");
+      if(logo){
+        logo.src = withVersion("logo.jpg");
+      }
+
+      // Render Reading & Writing: RW1 -> RW16
+      addImages("rw-images", "RW", 1, 16);
+
+      // Render Speaking: S1 -> S6
+      addImages("speaking-images", "S", 1, 6);
+
+      // Load ảnh thông minh
+      document.querySelectorAll("img[data-img]").forEach(loadSmartImage);
+
+      // Load audio
+      document.querySelectorAll("audio[data-audio]").forEach(setupAudio);
+
+      // Cập nhật ?v= trên thanh địa chỉ để tránh cache HTML
+      const url = new URL(window.location.href);
+      if (url.searchParams.get("v") !== VERSION) {
+        url.searchParams.set("v", VERSION);
+        history.replaceState(null, "", url.toString());
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- BÊN TRÁI: CÂU HỎI -->
+    <main class="left">
+      <header class="brand-bar">
+        <img class="logo" alt="SIMPace Logo" />
+        <div class="title-block">
+          <h1>Mock Test One</h1>
+          <p>English Test Practice · Listening · Reading & Writing · Speaking</p>
+        </div>
+      </header>
+
+      <nav class="quick-nav">
+        <a href="#listening">🎧 Listening</a>
+        <a href="#reading-writing">📖 Reading & Writing</a>
+        <a href="#speaking">🗣️ Speaking</a>
+      </nav>
+
+      <!-- SECTION 1: LISTENING -->
+      <section id="listening" class="section">
+        <div class="section-heading">
+          <div class="main">🎧 Listening</div>
+          <div class="sub">5 parts · Images L1–L11</div>
+        </div>
+
+        <div class="part-card">
+	<img class="test-img" data-img="JPG1/L1" alt="L1" />
+          <h3>Listening Part 1</h3>
+          <p class="note">Audio: Part1.MP3 · Images: L1–L2</p>
+          <audio controls preload="metadata"
+            data-audio='["AUDIO/Part1.MP3","Audio/Part1.MP3","AUDIO/part1.MP3","Audio/part1.MP3","AUDIO/L1.MP3","Audio/L1.MP3"]'>
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+	
+	<img class="test-img" data-img="JPG1/L3" alt="L3" /><img class="test-img" data-img="JPG1/L4" alt="L4" />
+          
+        
+        </div>
+
+        <div class="part-card">
+          <h3>Listening Part 2</h3>
+          <p class="note">Audio: Part2.MP3 · Images: L3–L4</p>
+          <audio controls preload="metadata"
+            data-audio='["AUDIO/Part2.MP3","Audio/Part2.MP3","AUDIO/part2.MP3","Audio/part2.MP3","AUDIO/L2.MP3","Audio/L2.MP3"]'>
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+	<img class="test-img" data-img="JPG1/L5" alt="L5" />
+          
+          
+        </div>
+
+        <div class="part-card">
+          <h3>Listening Part 3</h3>
+          <p class="note">Audio: Part3.MP3 · Images: L5–L6</p>
+          <audio controls preload="metadata"
+            data-audio='["AUDIO/Part3.MP3","Audio/Part3.MP3","AUDIO/part3.MP3","Audio/part3.MP3","AUDIO/L3.MP3","Audio/L3.MP3"]'>
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+          
+          <img class="test-img" data-img="JPG1/L6" alt="L6" />
+	<img class="test-img" data-img="JPG1/L7" alt="L7" />	
+        </div>
+
+        <div class="part-card">
+          <h3>Listening Part 4</h3>
+          <p class="note">Audio: Part4.MP3 · Images: L7–L8</p>
+          <audio controls preload="metadata"
+            data-audio='["AUDIO/Part4.MP3","Audio/Part4.MP3","AUDIO/part4.MP3","Audio/part4.MP3","AUDIO/L4.MP3","Audio/L4.MP3"]'>
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+          
+          <img class="test-img" data-img="JPG1/L8" alt="L8" />
+	  <img class="test-img" data-img="JPG1/L9" alt="L9" />
+        </div>
+
+        <div class="part-card">
+          <h3>Listening Part 5</h3>
+          <p class="note">Audio: Part5.MP3 · Images: L9–L11</p>
+          <audio controls preload="metadata"
+            data-audio='["AUDIO/Part5.MP3","Audio/Part5.MP3","AUDIO/part5.MP3","Audio/part5.MP3","AUDIO/L5.MP3","Audio/L5.MP3"]'>
+            Trình duyệt của bạn không hỗ trợ audio.
+          </audio>
+          
+          <img class="test-img" data-img="JPG1/L10" alt="L10" />
+          <img class="test-img" data-img="JPG1/L11" alt="L11" />
+        </div>
+      </section>
+
+      <!-- SECTION 2: READING AND WRITING -->
+      <section id="reading-writing" class="section">
+        <div class="section-heading">
+          <div class="main">📖 Reading & Writing</div>
+          <div class="sub">Images RW1–RW16</div>
+        </div>
+
+        <div class="part-card">
+          <h3>Reading and Writing Questions</h3>
+          <p class="note">Upload ảnh vào folder <strong>JPG1</strong> và đặt tên: RW1.jpg, RW2.jpg ... RW16.jpg.</p>
+          <div id="rw-images"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: SPEAKING -->
+      <section id="speaking" class="section">
+        <div class="section-heading">
+          <div class="main">🗣️ Speaking</div>
+          <div class="sub">Images S1–S6</div>
+        </div>
+
+        <div class="part-card">
+          <h3>Speaking Questions</h3>
+          <p class="note">Upload ảnh vào folder <strong>JPG1</strong> và đặt tên: S1.jpg, S2.jpg ... S6.jpg.</p>
+          <div id="speaking-images"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- BÊN PHẢI: GOOGLE FORM -->
+    <aside class="right">
+      <div class="form-title">✅ Trả lời</div>
+      <div class="iframe-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfnMjBC0SSAq3OpEc0TUwMM0hXZDACkd-g_ctldgpQmeHv7Ow/viewform?embedded=true"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
